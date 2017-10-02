@@ -1,0 +1,130 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SCORM</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/teststyles.css">
+        <script type="text/javascript" src="js/testscript.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="head">
+            <div class="top-line first"></div>
+            <div class="top-line second"></div>
+        </div>
+        <div class="body-holder col-sm-8">
+          <div class="test-case-holder">
+              <div class="test-case-list">
+                <div class="test-case" id="test-case1">
+                    <div class="test-case-heading">Test Case 1</div>
+                    <table>
+                        <tbody>
+                          <tr class="row1 table-row">
+                              <td class="firstcol">
+                                 Grade
+                              </td>
+                              <td class="lastcol">
+                                <select>
+                                      <option value="20%">20%</option>
+                                      <option active value="40%">40%</option>
+                                      <option value="60%">60%</option>
+                                      <option value="80%">80%</option>
+                                      <option value="100%">100%</option>
+                                </select>
+                              </td>
+                          </tr>
+                          <tr class="table-row">
+                              <td class="firstcol">
+                                Testcase from files
+                              </td>
+                              <td class="lastcol">
+                                <input type="checkbox" class="checkbox" name="" value="">
+                              </td>
+                          </tr>
+                          <tr class="row2 not-file-input table-row">
+                              <td class="firstcol">
+                                 Input
+                              </td>
+                              <td class="lastcol">
+                                 <textarea name="name" rows="8" cols="40"></textarea>
+                              </td>
+                          </tr>
+                          <tr class="row3 not-file-input table-row">
+                              <td class="firstcol">
+                                 Output
+                              </td>
+                              <td class="lastcol">
+                                 <textarea name="name" rows="8" cols="40"></textarea>
+                              </td>
+                          </tr>
+                          <tr class="row2 file-input table-row">
+                              <td class="firstcol">
+                                 Input File
+                              </td>
+                              <td class="lastcol">
+                                          <div class="mod">
+                                              <div class="dragNdrop">
+                                                  <form id="FileUploadForm" method="post" action="public/php/FileUpload.php">
+                                                      <div class="fileInput" id="fileInput">
+                                                          <input name="file" id="fileSelect" class="fileSelect" type="file">
+                                                      </div>
+                                                  </form>
+                                                  <img class="placeHolder" src="images/drag.png" alt="dragNdrop">
+                                                  <img class="fileIcon" src="images/drag.png" alt="dragNdrop">
+                                                  <div class="fileMessage"><strong>drag & drop<br> or click here</strong>
+                                                  </div>
+                                              </div>
+                                          </div>
+                              </td>
+                          </tr>
+                          <tr class="row3 file-input table-row">
+                              <td class="firstcol">
+                                 Output File
+                              </td>
+                              <td class="lastcol">
+                                          <div class="mod">
+                                              <div class="dragNdrop">
+                                                  <form id="FileUploadForm" method="post" action="public/php/FileUpload.php">
+                                                      <div class="fileInput" id="fileInput">
+                                                          <input name="file" id="fileSelect" class="fileSelect" type="file">
+                                                      </div>
+                                                  </form>
+                                                  <img class="placeHolder" src="images/drag.png" alt="dragNdrop">
+                                                  <img class="fileIcon" src="images/drag.png" alt="dragNdrop">
+                                                  <div class="fileMessage"><strong>drag & drop<br> or click here</strong>
+                                                  </div>
+                                              </div>
+                                          </div>
+                              </td>
+                          </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+              </div>
+              <div class="test-case-button-holder">
+                <button type="button" class="button-create" name="button">Create</button>
+                <button type="button" class="button-add-test-case" name="button">Add a test case</button>
+
+              </div>
+
+          </div>
+
+        </div>
+
+    </body>
+</html>

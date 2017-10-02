@@ -1,0 +1,10 @@
+.head .top-line{
+	width: 100%;
+	height: 11vh;
+}
+.head .top-line.first{
+	background-color: rgb(109,114,120);
+}
+.head .top-line.second{
+	background-color: rgb(75,80,86);
+}

@@ -1,0 +1,15 @@
+The trapezoidal integration method works by spliting the region to be intregrated into small aproxiamte trapezoids and summing the area of these trapezoids. 
+
+Since calculating and summming these areas are independent operations, the trapezoidal integration method is a good candidate for parallelization.
+
+By dividing the summation of trapezoids amongst the threads, The algorithm showed an increase in performance for each increase in thread count (powers of 2). The error in the actual integration was unnoticble.
+
+///
+
+The Monte-Carlo integration method was parallelized by dividing the summation of stones amongst threads
+
+By doing this, the algorithm's performance also improved.
+
+However, for stone values in the same range as number of trapezoids in the previous method, the Monte-Carlo method produced a much larger error. This implies that this method would require stones of a much higher order to achieve the same level of accuracy.
+
+The Monte-Carlo integration method is more suited for complex integrals in higher dimensions as the complexity of the implementation itself would not change.

@@ -1,0 +1,117 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>SCORM</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/scorm.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="head">
+            <div class="top-line first"></div>
+            <div class="top-line second"></div>
+        </div>
+        <div class="body-holder marker-holder col-sm-8">
+            <div class="marker-heading  marker-item">Online Judge</div>
+            <div class="box-centre marker-item">
+                <table class="generalbox boxaligncenter" id="assignment_onlinejudge_information" width="100%">
+                  <tbody>
+                    <tr class="r0 table-row">
+                        <td class="cell c0" style="text-align:right;width:20%;">Programming language:</td>
+                        <td class="cell c1 lastcol" style="text-align:left;"></td>
+                    </tr>
+                    <tr class="r1 table-row">
+                        <td class="cell c0" style="text-align:right;width:20%;">Maximum memory usage:</td>
+                        <td class="cell c1 lastcol" style="text-align:left;"></td>
+                    </tr>
+                    <tr class="r2 table-row lastrow">
+                        <td class="cell c0" style="text-align:right;width:20%;">Maximum CPU time:</td>
+                        <td class="cell c1 lastcol" style="text-align:left;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+
+            <div class="marker-heading  marker-item">Submission</div>
+
+            <div class="loader-holder" style="display:none;">
+              <img src="images/loading.gif"/>
+            </div>
+
+            <div class="table-centre results marker-item" style="display:none;">
+				<div class="grade">
+					Grade: <span class="my-grade">93</span>/100.00
+				</div>
+                <a class="upload-link" href="#">
+                  <img src="images/cpp.png"/>
+                  <div>index.cpp</div>
+                </a>
+
+                <table class="generaltable" id="assignment_onlinejudge_summary" width="100%">
+                    <tbody id="yui_3_7_3_2_1503558882690_339">
+                    <tr class="r0 table-row" id="yui_3_7_3_2_1503558882690_338">
+                        <td class="cell c0" style="text-align:right;width:20%;" id="yui_3_7_3_2_1503558882690_337">Status<span class="helplink"><a href="http://courses.ms.wits.ac.za/moodle/help.php?component=assignment_onlinejudge&amp;identifier=status&amp;lang=en" title="Help with Status" aria-haspopup="true" class="tooltip"><img src="http://courses.ms.wits.ac.za/moodle/theme/image.php/fusion/core/1447061817/help" alt="Help with Status" class="iconhelp"></a></span>:</td>
+                        <td class="cell c1 lastcol" style="text-align:left;"><span class="status">Accepted</span></td>
+                    </tr>
+                    <tr class="r1 table-row">
+                        <td class="cell c0" style="text-align:right;width:20%;">Judge time:</td>
+                        <td class="cell c1 lastcol" style="text-align:left;">Friday, 28 July 2017, 3:57 PM&nbsp;(26 days 17 hours early)</td>
+                    </tr>
+                    <tr class="r2 table-row lastrow">
+                        <td class="cell c0" style="text-align:right;width:20%;">Details:</td>
+                        <td class="cell c1 lastcol" style="text-align:left;">
+                            <div class="text_to_html"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="heading-centre instructions marker-item">
+                Submit a single C++ file containing your agent here
+            </div>
+
+            <div class="upload-file-button-container">
+                <button class="upload-file-button">Upload File</button>
+            </div>
+
+            <div class="mod" style="display:none;">
+                <div class="dragNdrop">
+                    <form id="FileUploadForm" method="post" action="">
+                        <div class="fileInput" id="fileInput">
+                            <input name="uploadedfile" id="fileSelect" class="fileSelect" type="file">
+                        </div>
+                        <input id="learner_id" name="learner_id" value="" style="display: none;">
+                        <input id="assignment_id" name="assignment_id" value="" style="display: none;">
+                    </form>
+                    <img class="placeHolder" src="images/drag.png" alt="dragNdrop">
+                    <img class="fileIcon" src="images/drag.png" alt="dragNdrop">
+                    <div class="fileMessage"><strong>drag & drop<br> or click here</strong>
+                    </div>
+                </div>
+                <div class="button-containers">
+                    <button class="upload-submit">Submit For Grading</button>
+                    <button class="upload-cancel" id="fileCancel">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

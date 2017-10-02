@@ -1,0 +1,37 @@
+Serial: 1.00003
+Thread 2: 1.00189
+Thread 4: 1.00298
+Thread 8: 1.00196
+Serial: 1.0001
+Thread 2: 0.999764
+Thread 4: 1.00204
+Thread 8: 1.00234
+Serial: 1.00065
+Thread 2: 0.999923
+Thread 4: 1.00023
+Thread 8: 1.00237
+Serial: 0.999574
+Thread 2: 0.999514
+Thread 4: 1.00123
+Thread 8: 1.00137
+Serial: 0.999916
+Thread 2: 1.00114
+Thread 4: 1.00151
+Thread 8: 1.00283
+Serial: 1.00049
+Thread 2: 1.00018
+Thread 4: 1.00127
+Thread 8: 1.00203
+Serial: 0.999434
+Thread 2: 1.00001
+Thread 4: 1.00112
+Thread 8: 1.00272
+Serial: 0.999524
+Thread 2: 1.00052
+Thread 4: 1.00051
+Thread 8: 1.00191
+number of cores: 8
+
+real	4m34.498s
+user	11m53.324s
+sys	0m0.084s
