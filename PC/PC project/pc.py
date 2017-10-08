@@ -1,38 +1,43 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 import sys
+
 num_points = input("Enter a number of points: ") # number of points in each cluster
-num_clusters = input("Enter a number of clusters: ")
-cluster_means = []
-for i in range(num_clusters):
+num_clusters = input("Enter a number of clusters: ") # k
+cluster_means = [] # matrix of means
+
+for i in range(num_clusters): # read row by row
 	c_i = raw_input("Enter cluster mean of cluster "+str(i)+": ")
 	m_i = map(float, c_i.split())
 	cluster_means.append(m_i)
-print cluster_means
+
 c_v = raw_input("Enter list of variance: ")
-covarience = map(float, c_v.split())
-print covarience
+covarience = map(float, c_v.split()) # variance of the cluster: keep it round...
+
 file = open("data2.txt","w")
-mean = [25, 25]
-cov = [[1, 0], [0, 1]]
-x, y = np.random.multivariate_normal(mean, cov, 5000).T
+cov = []
+dim = len(cluster_means[0])
 
-for i in range(5000):
-	x[i] = x[i]
-	y[i] = y[i]
-	file.write(str(x[i])+" "+str(y[i])+"\n")
-	# print x[i],y[i]
+for k in range(dim):
+	cov.append([0] * dim)
 
-mean = [0, 0]
-cov = [[1, 0], [0, 1]]
-x1, y1 = np.random.multivariate_normal(mean, cov, 5000).T
+data = []
 
-for i in range(5000):
-	x1[i] = x1[i]
-	y1[i] = y1[i]
-	file.write(str(x1[i])+" "+str(y1[i])+"\n")
-	# print x1[i],y1[i]
-file.close()
-plt.plot(x, y, 'x')
+for j in range(num_clusters):
+	mean = cluster_means[j]
+	for l in range(dim):
+		cov[l][l] = covarience[j]
+	coords = np.random.multivariate_normal(mean, cov, num_points)
+	data.extend(coords)
+
+lis = range(num_clusters*num_points)
+random.shuffle(lis)
+for h in lis:
+	file.write(" ".join(map(str, data[h])) + "\n")
+
+# file.close()
+X = np.array(data)
+plt.plot(X.T[0], X.T[1], 'x')
 plt.axis('equal')
 plt.show()
