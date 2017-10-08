@@ -8,12 +8,25 @@ float d(float *u, float *x, int dim) {
 		ans += pow(u[i]-x[i], 2);
 	return pow(ans, 0.5);
 }
-//k-means less data... store the sum of all the x values
+
+int getCluster(float **u, float *x, int dim, int kmn) {
+	int indx = 0;
+	float minD = d(u[0], x, dim);
+	for(int j=0; j<kmn; j++) {
+		if(d(u[j], x, dim) < minD) {
+			minD = d(u[j], x, dim); //update min
+			indx = j; // storing min index
+		}
+	}
+	return indx;
+}
+
 int main() {
-	/*************serial***************************/
+/*************serial***************************/
 
 	/***********read in data************************/
 	int len, dim, kmn;
+	cout << "num_points, dimension, k: ";
 	cin >> len >> dim >> kmn;
 	ifstream infile("data2.txt");
 	//float a, b;
@@ -28,7 +41,10 @@ int main() {
 	cout << len << endl;
 
 	/******preparing k means*****************/
-	float u[kmn][dim];
+	float **u = new float*[kmn];
+	for (int i = 0; i < kmn; ++i)
+		u[i] = new float[dim];
+
 	random_device rd;
 	mt19937 gen(rd());
 	uniform_real_distribution<> dis(0.0, 1.0);
@@ -41,62 +57,51 @@ int main() {
 
 
 	/********normalizing with min-max********************************/
-	float min[dim];
-	float max[dim];
+	float minV[dim];
+	float maxV[dim];
 	for(int j=0; j<dim; j++) {
-		min[j] = points[0][j];
-		max[j] = points[0][j];
+		minV[j] = points[0][j];
+		maxV[j] = points[0][j];
 	}
 	for(int i=0; i<len; i++) {
 		for(int j=0; j<dim; j++) {
-			min[j] = min(min[j], points[i][j]);
-			max[j] = max(max[j], points[i][j]);
+			minV[j] = min(minV[j], points[i][j]);
+			maxV[j] = max(maxV[j], points[i][j]);
 		}
-	} //a' = (a-min)/(max-min)
+	} /////////////////a' = (a-min)/(max-min)////////////////////
 	for(int i=0; i<len; i++) {
 		for(int j=0; j<dim; j++)
-			points[i][j] = (points[i][j]-min[j])/(max[j]-min[j]);
+			points[i][j] = (points[i][j]-minV[j])/(maxV[j]-minV[j]);
 	}
 
 	/*******************starting k-means********************************/
-	float mu = 0.1; // learning rate (smaller mu == accurate)
-	for(int ep=0; ep<1000; ep++) { //fix the number of iterations
+	for(int ep=0; ep<100; ep++) { //fix the number of iterations
 		/************************* storing u averages as sums***********/
-		for(int i=0; i<kmn; i++){
+		for(int i=0; i<kmn; i++) {
 			for(int j=0; j<=dim; j++)
 				usum[i][j] = 0.0f;
 		}
 		for(int i=0; i<len; i++) { // each data point
-			int indx = 0;
-			float minD = d(u[0], points[i], dim);
-			for(int j=0; j<kmn; j++) {
-				if(d(u[j], points[i]) < minD) {
-					minD = d(u[j], points[i]);
-					index = j;
-				}
-			}
-			for(int k=0; k<dim; k++) {
-				usum[index][k] += points[i][k];
-			}
-			usum[index][dim] += 1.0f;
+			int index = getCluster(u, points[i], dim, kmn); //index of cluster 
+			/****update the sum of the centre*****/
+			for(int k=0; k<dim; k++) usum[index][k] += points[i][k];
+			usum[index][dim] += 1.0f; //increment number of points in this cluster
 		}
-		cout << "the elements in cluster 0 is" << usum0n << endl;
-		cout << "the elements in cluster 1 is" << usum1n << endl;
-		u[0][0] = usum0x/usum0n;
-		u[0][1] = usum0y/usum0n;
-		u[1][0] = usum1x/usum1n;
-		u[1][1] = usum1y/usum1n;
+		for(int i=0; i<kmn; i++) {
+			cout << "the elements in cluster "<< i <<" is" << usum[i][dim] << endl;
+			for(int j=0; j<dim; j++)
+				u[i][j] = usum[i][j]/usum[i][dim]; // update centre to average of cluster
+		} //usum[i][dim] represents the number of elements in the cluster
 	}
+	/**********************writing to file**********************/
 	ofstream myfile;
 	myfile.open ("data.txt");
 	for(int i=0; i<len; i++) {
-		float color = 2.0;
-		if(d(u[0], points[i]) < d(u[1], points[i]))
-			color = 1.0;
-		myfile << points[i][0] << " " << points[i][1] << " " << color << "\n";
+		int color = getCluster(u, points[i], dim, kmn);
+		for(int j=0; j<dim; j++)
+			myfile << points[i][j] << " ";
+		myfile << color << "\n";
 	}
-	myfile << u[0][0] << " " << u[0][1] << " " << 0 << "\n";
-	myfile << u[1][0] << " " << u[1][1] << " " << 0 << "\n";
 
 	myfile.close();
 	return 0;
