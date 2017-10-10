@@ -1,0 +1,1 @@
+plot "data.txt" with points pointtype 5 palette
